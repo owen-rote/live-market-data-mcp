@@ -65,14 +65,16 @@ async def get_stock_history(
 
     records = []
     for date, row in hist.iterrows():
-        records.append({
-            "date": str(date),
-            "open": round(row["Open"], 2),
-            "high": round(row["High"], 2),
-            "low": round(row["Low"], 2),
-            "close": round(row["Close"], 2),
-            "volume": int(row["Volume"]),
-        })
+        records.append(
+            {
+                "date": str(date),
+                "open": round(row["Open"], 2),
+                "high": round(row["High"], 2),
+                "low": round(row["Low"], 2),
+                "close": round(row["Close"], 2),
+                "volume": int(row["Volume"]),
+            }
+        )
 
     data = {
         "symbol": symbol.upper(),
@@ -156,14 +158,16 @@ async def get_multiple_quotes(symbols: list[str]) -> str:
         try:
             ticker = yf.Ticker(symbol)
             info = ticker.info
-            results.append({
-                "symbol": symbol.upper(),
-                "name": info.get("shortName", "N/A"),
-                "price": info.get("currentPrice") or info.get("regularMarketPrice"),
-                "change": info.get("regularMarketChange"),
-                "change_percent": info.get("regularMarketChangePercent"),
-                "volume": info.get("volume") or info.get("regularMarketVolume"),
-            })
+            results.append(
+                {
+                    "symbol": symbol.upper(),
+                    "name": info.get("shortName", "N/A"),
+                    "price": info.get("currentPrice") or info.get("regularMarketPrice"),
+                    "change": info.get("regularMarketChange"),
+                    "change_percent": info.get("regularMarketChangePercent"),
+                    "volume": info.get("volume") or info.get("regularMarketVolume"),
+                }
+            )
         except Exception as e:
             results.append({"symbol": symbol.upper(), "error": str(e)})
 
@@ -185,13 +189,15 @@ async def get_market_news(symbol: str) -> str:
 
     articles = []
     for item in news[:10]:
-        articles.append({
-            "title": item.get("title"),
-            "publisher": item.get("publisher"),
-            "link": item.get("link"),
-            "published": item.get("providerPublishTime"),
-            "type": item.get("type"),
-        })
+        articles.append(
+            {
+                "title": item.get("title"),
+                "publisher": item.get("publisher"),
+                "link": item.get("link"),
+                "published": item.get("providerPublishTime"),
+                "type": item.get("type"),
+            }
+        )
 
     return json.dumps(articles, indent=2)
 
