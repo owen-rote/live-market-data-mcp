@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "live-market-data-mcp"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp",
+    "yfinance"
+]
+
+[project.scripts]
+live-market-data-mcp = "server:main"
+
+[tool.hatch.build]
+include = ["server.py"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
