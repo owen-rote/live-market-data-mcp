@@ -1,14 +1,12 @@
 # Live Market Data MCP
 
-An MCP server for connecting LLMs to live market data via yfinance.
+An MCP server providing real-time stock market data to LLMs via yfinance. Designed for Claude and other MCP-compatible AI assistants to fetch live financial data.
 
 ## Requirements
 
 - Python 3.10+
 - [uv](https://docs.astral.sh/uv/) (python package manager)
-  - [https://docs.astral.sh/uv/](https://docs.astral.sh/uv/)
-- Claude Desktop App (or any MCP-compatible client)
-- nodejs (for MCP server)
+- Claude Desktop App (or any MCP-compatible client. ChatGPT etc)
 
 ## Installation
 
@@ -18,7 +16,7 @@ An MCP server for connecting LLMs to live market data via yfinance.
 # Mac/Linux:
 curl -LsSf https://astral.sh/uv/install.sh | sh
 # Windows (PowerShell):
-curl -LsSf https://astral.sh/uv/install.sh | sh
+irm https://astral.sh/uv/install.ps1 | iex
 
 # Install dependencies with uv
 cd live-market-data-mcp
@@ -47,12 +45,24 @@ code $env:AppData\Claude\claude_desktop_config.json
 
 ## Available Tools
 
-| Tool                          | Description                                             |
-| ----------------------------- | ------------------------------------------------------- |
-| `get_stock_price`             | Current price, volume, day range, 52-week range         |
-| `get_stock_history`           | Historical OHLCV data with customizable period/interval |
-| `get_company_info`            | Company details (sector, industry, description)         |
-| `get_financial_metrics`       | PE ratio, EPS, dividend yield, margins                  |
-| `get_multiple_quotes`         | Batch quotes for multiple symbols                       |
-| `get_market_news`             | Recent news articles for a stock                        |
-| `get_analyst_recommendations` | Price targets and analyst ratings                       |
+| Tool | Description | Use Case |
+|------|-------------|----------|
+| `get_current_quote` | Real-time price, change, volume, bid/ask | Check current stock price and today's performance |
+| `get_price_history` | Historical OHLCV data with configurable period/interval | Technical analysis, charting, trend analysis |
+| `get_company_profile` | Business description, sector, industry, CEO | Learn what a company does and its classification |
+| `get_key_statistics` | Market cap, 52-week range, beta, short interest | Market sizing and volatility assessment |
+| `get_valuation_metrics` | P/E, P/B, PEG, EV/EBITDA ratios | Fundamental analysis, valuation comparison |
+| `get_financial_health` | Margins, ROE, ROA, debt ratios, cash flow | Assess financial strength and profitability |
+| `get_dividend_info` | Yield, payout ratio, ex-dividend dates | Evaluate income potential and dividend sustainability |
+| `get_analyst_targets` | Price targets and buy/sell/hold ratings | See Wall Street analyst consensus |
+| `get_stock_news` | Recent headlines and articles (up to 25) | Stay informed on company developments |
+| `compare_stocks` | Side-by-side comparison of up to 10 stocks | Compare competitors or portfolio candidates |
+
+## Example Prompts
+
+- "What's the current price of AAPL?"
+- "Compare the valuations of MSFT, GOOGL, and AMZN"
+- "Show me Tesla's price history for the past 6 months"
+- "What do analysts think about NVDA?"
+- "Is Disney a good dividend stock?"
+- "What does Palantir do as a company?"
