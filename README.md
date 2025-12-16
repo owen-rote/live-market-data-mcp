@@ -1,12 +1,17 @@
-# Live Market Data MCP
+# Live Market Data Model Context Protocol (MCP)
 
 An MCP server providing real-time stock market data to LLMs via yfinance. Designed for Claude and other MCP-compatible AI assistants to fetch live financial data.
+
+Once configured, Claude will automatically have access to all market data tools and will intelligently call them as needed during your conversations.
+
+No local data required. All data is fetched live andon-demand from Yahoo Finance
 
 ## Requirements
 
 - Python 3.10+
 - [uv](https://docs.astral.sh/uv/) (python package manager)
 - Claude Desktop App (or any MCP-compatible client. ChatGPT etc)
+- Node.js must be installed for MCP server support
 
 ## Installation
 
@@ -18,12 +23,12 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 # Windows (PowerShell):
 irm https://astral.sh/uv/install.ps1 | iex
 
-# Install dependencies with uv
+# Python dependencies with uv
 cd live-market-data-mcp
 uv sync
 
-# Configure Claude Desktop
-# ========================
+# Configure Claude Desktop (claude_desktop_config.json)
+# =====================================================
 # Mac/Linux:
 code ~/Library/Application\ Support/Claude/claude_desktop_config.json
 # Windows:
